@@ -14,7 +14,6 @@ export function ForestMap() {
 
   return (
     <div className={styles.forestMap}>
-      <h3>ForestMap</h3>
       <MapWrapper
         features={forestAreas.map(
           ([areaId, area]) =>

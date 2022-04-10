@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import logo from "./logo.svg";
+import { useEffect } from "react";
 import { ForestMap } from "./features/forestMap/ForestMap";
-import "./App.css";
 import { fetchForestAreas } from "./features/forestMap/forestMapAPI";
 import { useAppDispatch } from "./app/hooks";
 import { addArea } from "./features/forestMap/forestMapSlice";
+import { DesktopNavigation } from "./components/DesktopNavigation";
+import "./App.css";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -19,9 +19,20 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <ForestMap />
+      <header
+        className="App-header"
+        // style={{
+        //   backgroundImage: `${getBasePath()}/logo192.png`,
+        //   backgroundColor: "green",
+        // }}
+      >
+        <DesktopNavigation />
+        <h3>ForestMap</h3>
+        {/* <ForestMap /> */}
       </header>
+      <div>
+        <ForestMap />{" "}
+      </div>
     </div>
   );
 }

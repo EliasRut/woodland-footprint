@@ -38,7 +38,4 @@ export const getAllForestAreas = (state: RootState) => state.forestMap.areas;
 export const getAllForestAreasAsList = (state: RootState) =>
   Object.entries(state.forestMap.areas) as [string, MapArea][];
 
-export const selectedForestArea = (state: RootState) =>
-  state.forestMap.selectedArea;
-
 export default forestMapSlice.reducer;

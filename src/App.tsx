@@ -5,6 +5,8 @@ import "./App.css";
 import { fetchForestAreas } from "./features/forestMap/forestMapAPI";
 import { useAppDispatch } from "./app/hooks";
 import { addArea } from "./features/forestMap/forestMapSlice";
+import { Routes, Route, Link } from "react-router-dom";
+import About from "./features/about/About";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -20,7 +22,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <ForestMap />
+        <Routes>
+          <Route path="/" element={<ForestMap />} />
+          <Route path="area/:areaKey" element={<ForestMap />} />
+          <Route path="about" element={<About />} />
+        </Routes>
       </header>
     </div>
   );

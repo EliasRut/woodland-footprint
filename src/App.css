@@ -14,12 +14,18 @@
 }
 
 .App-header {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  color: white;
+  background-image: url(resources/forest.webp);
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .App-link {

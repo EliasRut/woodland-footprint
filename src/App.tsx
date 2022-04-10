@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import logo from "./logo.svg";
+import { useEffect } from "react";
 import { ForestMap } from "./features/forestMap/ForestMap";
-import "./App.css";
 import { fetchForestAreas } from "./features/forestMap/forestMapAPI";
 import { useAppDispatch } from "./app/hooks";
 import { addArea } from "./features/forestMap/forestMapSlice";
-import { Routes, Route, Link } from "react-router-dom";
+import { DesktopNavigation } from "./components/DesktopNavigation";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
 import About from "./features/about/About";
 
 function App() {
@@ -22,12 +22,17 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Routes>
-          <Route path="/" element={<ForestMap />} />
-          <Route path="area/:areaKey" element={<ForestMap />} />
-          <Route path="about" element={<About />} />
-        </Routes>
+        <DesktopNavigation />
+        <h3>ForestMap</h3>
       </header>
+      <Routes>
+        <Route path="/" element={<ForestMap />} />
+        <Route path="area/:areaKey" element={<ForestMap />} />
+        <Route path="about" element={<About />} />
+      </Routes>
+      <div>
+        <ForestMap />
+      </div>
     </div>
   );
 }

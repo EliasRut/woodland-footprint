@@ -23,7 +23,6 @@ export function ForestMap() {
 
   return (
     <div className={styles.forestMap}>
-      <h3>ForestMap</h3>
       <MapWrapper
         selectedArea={selectedArea}
         features={forestAreas.map(

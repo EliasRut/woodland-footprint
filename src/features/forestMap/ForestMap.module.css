@@ -1,0 +1,12 @@
+.forestMap {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.openLayersMap {
+  width: 1200px;
+  height: 600px;
+  /* flex-grow: 1; */
+}

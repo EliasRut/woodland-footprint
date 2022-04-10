@@ -21,12 +21,11 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  /* background-color: green; */
   background-image: url(resources/forest.webp);
-  height: 500px; /* You must set a specified height */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .App-link {

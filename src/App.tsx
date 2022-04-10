@@ -5,6 +5,8 @@ import { useAppDispatch } from "./app/hooks";
 import { addArea } from "./features/forestMap/forestMapSlice";
 import { DesktopNavigation } from "./components/DesktopNavigation";
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import About from "./features/about/About";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -19,19 +21,17 @@ function App() {
 
   return (
     <div className="App">
-      <header
-        className="App-header"
-        // style={{
-        //   backgroundImage: `${getBasePath()}/logo192.png`,
-        //   backgroundColor: "green",
-        // }}
-      >
+      <header className="App-header">
         <DesktopNavigation />
         <h3>ForestMap</h3>
-        {/* <ForestMap /> */}
       </header>
+      <Routes>
+        <Route path="/" element={<ForestMap />} />
+        <Route path="area/:areaKey" element={<ForestMap />} />
+        <Route path="about" element={<About />} />
+      </Routes>
       <div>
-        <ForestMap />{" "}
+        <ForestMap />
       </div>
     </div>
   );

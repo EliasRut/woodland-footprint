@@ -16,9 +16,15 @@ import GeoJSON from "ol/format/GeoJSON";
 import styles from "./ForestMap.module.css";
 import { ForestTypeColors } from "../../app/colors";
 import ForestType from "../../types/ForestType";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { setSelected, getSelectedArea } from "./forestMapSlice";
+import { boundingExtent } from "ol/extent";
+import { useNavigate } from "react-router-dom";
+import MapArea from "../../types/MapArea";
 
 export interface MapWrapperProps {
   features: any[];
+  selectedArea: MapArea | undefined;
 }
 
 const style = new Style({
@@ -28,6 +34,9 @@ const style = new Style({
 });
 
 function MapWrapper(props: MapWrapperProps) {
+  const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
   // set intial state - used to track references to OpenLayers
   //  objects for use in hooks, event handlers, etc.
   const [map, setMap] = useState<Map | undefined>();
@@ -35,6 +44,7 @@ function MapWrapper(props: MapWrapperProps) {
     VectorLayer<VectorSource<Geometry>> | undefined
   >();
   const [selectedCoord, setSelectedCoord] = useState<Coordinate | undefined>();
+  const { selectedArea } = props;
 
   // get ref to div element - OpenLayers will render into this div
   const mapElement = useRef<HTMLDivElement | null>(null);
@@ -79,9 +89,6 @@ function MapWrapper(props: MapWrapperProps) {
       controls: [],
     });
 
-    console.log("Hey!");
-    // initialMap.getView().setCenter([15.378485743888168, 47.9568457626996]);
-
     // save map and vector layer references to state
     setMap(initialMap);
     setFeaturesLayer(initalFeaturesLayer);
@@ -106,10 +113,21 @@ function MapWrapper(props: MapWrapperProps) {
         })
       );
 
-      // fit map to feature extent (with 100px of padding)
-      map!.getView().fit(featuresLayer!.getSource()!.getExtent(), {
-        padding: [100, 100, 100, 100],
-      });
+      if (selectedArea) {
+        const extent = boundingExtent(
+          selectedArea.geoPoints.map(([lat, lon]) =>
+            transform([lat, lon], "EPSG:4326", "EPSG:3857")
+          )
+        );
+        map!.getView().fit(extent, {
+          padding: [100, 100, 100, 100],
+        });
+      } else {
+        // fit map to feature extent (with 100px of padding)
+        map!.getView().fit(featuresLayer!.getSource()!.getExtent(), {
+          padding: [100, 100, 100, 100],
+        });
+      }
     }
   }, [props.features, featuresLayer]);
   // create state ref that can be accessed in OpenLayers onclick callback function
@@ -121,6 +139,12 @@ function MapWrapper(props: MapWrapperProps) {
   const handleMapClick = (event: { pixel: Pixel }) => {
     // get clicked coordinate using mapRef to access current React state inside OpenLayers callback
     //  https://stackoverflow.com/a/60643670
+    const clickedFeature = mapRef.current!.getFeaturesAtPixel(event.pixel)[0];
+    const clickedFeatureKey = clickedFeature
+      ? clickedFeature.get("key")
+      : undefined;
+    dispatch(setSelected(clickedFeatureKey));
+    navigate(clickedFeatureKey ? `/area/${clickedFeatureKey}` : "/");
     const clickedCoord = mapRef.current!.getCoordinateFromPixel(event.pixel);
 
     // transform coord to EPSG 4326 standard Lat Long

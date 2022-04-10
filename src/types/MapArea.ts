@@ -5,5 +5,10 @@ export default interface MapArea {
   geoPoints: GeoTupel[];
   forestType: ForestType;
   labelCenter: GeoTupel;
-  name: string;
+  label: string;
+  key: string;
+  area: number;
+  owner: string;
+  until: string;
+  carbonCaptured: number;
 }

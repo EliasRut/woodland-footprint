@@ -23,7 +23,12 @@ describe("forest map reducer", () => {
       geoPoints: [],
       forestType: ForestType.HEAVY,
       labelCenter: [16, 48],
-      name: "Lobau",
+      label: "Lobau",
+      key: testAreaKey,
+      area: 4216.12,
+      owner: "Lohnbot",
+      until: "31.12.2035",
+      carbonCaptured: 8.4652,
     };
     const actual = forestMapReducer(
       initialState,

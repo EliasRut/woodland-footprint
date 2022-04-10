@@ -30,6 +30,10 @@ export const forestMapSlice = createSlice({
 
 export const { addArea, removeArea, setSelected } = forestMapSlice.actions;
 
+export const getSelectedArea = (state: RootState) =>
+  state.forestMap.selectedArea
+    ? state.forestMap.areas[state.forestMap.selectedArea]
+    : undefined;
 export const getAllForestAreas = (state: RootState) => state.forestMap.areas;
 export const getAllForestAreasAsList = (state: RootState) =>
   Object.entries(state.forestMap.areas) as [string, MapArea][];

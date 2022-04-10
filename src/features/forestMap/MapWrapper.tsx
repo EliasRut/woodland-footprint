@@ -16,6 +16,8 @@ import GeoJSON from "ol/format/GeoJSON";
 import styles from "./ForestMap.module.css";
 import { ForestTypeColors } from "../../app/colors";
 import ForestType from "../../types/ForestType";
+import { useAppDispatch } from "../../app/hooks";
+import { setSelected } from "./forestMapSlice";
 
 export interface MapWrapperProps {
   features: any[];
@@ -28,6 +30,7 @@ const style = new Style({
 });
 
 function MapWrapper(props: MapWrapperProps) {
+  const dispatch = useAppDispatch();
   // set intial state - used to track references to OpenLayers
   //  objects for use in hooks, event handlers, etc.
   const [map, setMap] = useState<Map | undefined>();
@@ -79,9 +82,6 @@ function MapWrapper(props: MapWrapperProps) {
       controls: [],
     });
 
-    console.log("Hey!");
-    // initialMap.getView().setCenter([15.378485743888168, 47.9568457626996]);
-
     // save map and vector layer references to state
     setMap(initialMap);
     setFeaturesLayer(initalFeaturesLayer);
@@ -121,6 +121,10 @@ function MapWrapper(props: MapWrapperProps) {
   const handleMapClick = (event: { pixel: Pixel }) => {
     // get clicked coordinate using mapRef to access current React state inside OpenLayers callback
     //  https://stackoverflow.com/a/60643670
+    const clickedFeature = mapRef.current!.getFeaturesAtPixel(event.pixel)[0];
+    dispatch(
+      setSelected(clickedFeature ? clickedFeature.get("key") : undefined)
+    );
     const clickedCoord = mapRef.current!.getCoordinateFromPixel(event.pixel);
 
     // transform coord to EPSG 4326 standard Lat Long
@@ -128,7 +132,6 @@ function MapWrapper(props: MapWrapperProps) {
 
     // set React state
     setSelectedCoord(transormedCoord);
-    console.log(transormedCoord);
   };
 
   return <div ref={mapElement} className={styles.openLayersMap}></div>;

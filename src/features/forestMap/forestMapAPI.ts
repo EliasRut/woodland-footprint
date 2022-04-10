@@ -10,9 +10,14 @@ export const fakeAreas: Dictionary<MapArea> = {
       [48.21, 16.26],
       [48.21, 16.36],
     ],
-    name: "Schönbrunn",
+    label: "Schönbrunn",
+    key: "abcd-1234",
     labelCenter: [42.16, 16.31],
     forestType: ForestType.MODERATE,
+    area: 4216.12,
+    owner: "Lohnbot",
+    until: "31.12.2035",
+    carbonCaptured: 8.4652,
   },
 };
 

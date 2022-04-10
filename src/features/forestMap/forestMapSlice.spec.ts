@@ -22,6 +22,7 @@ describe("forest map reducer", () => {
     const lobauEntry: MapArea = {
       geoPoints: [],
       forestType: ForestType.HEAVY,
+      labelCenter: [16, 48],
       name: "Lobau",
     };
     const actual = forestMapReducer(

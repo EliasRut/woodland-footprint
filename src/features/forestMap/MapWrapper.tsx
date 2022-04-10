@@ -14,6 +14,8 @@ import Style from "ol/style/Style";
 import Fill from "ol/style/Fill";
 import GeoJSON from "ol/format/GeoJSON";
 import styles from "./ForestMap.module.css";
+import { ForestTypeColors } from "../../app/colors";
+import ForestType from "../../types/ForestType";
 
 export interface MapWrapperProps {
   features: any[];
@@ -44,7 +46,8 @@ function MapWrapper(props: MapWrapperProps) {
       source: new VectorSource(),
       background: "transparent",
       style: function (feature) {
-        const color = feature.get("COLOR_BIO") || "#ff000066";
+        const forestType = feature.get("forestType") as ForestType | undefined;
+        const color = forestType ? ForestTypeColors[forestType] : "#ffffff66";
         style.getFill().setColor(color);
         return style;
       },

@@ -1,4 +1,3 @@
-export default interface GeoTupel {
-  lat: number;
-  lon: number;
-}
+type GeoTupel = [number, number];
+
+export default GeoTupel;

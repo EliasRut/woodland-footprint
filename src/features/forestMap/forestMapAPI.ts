@@ -5,11 +5,13 @@ import { Dictionary } from "../../types/Dictionary";
 export const fakeAreas: Dictionary<MapArea> = {
   "abcd-1234": {
     geoPoints: [
-      { lat: 48.21, lon: 16.36 },
-      { lat: 48.22, lon: 16.35 },
-      { lat: 48.2, lon: 16.34 },
+      [48.11, 16.36],
+      [48.11, 16.26],
+      [48.21, 16.26],
+      [48.21, 16.36],
     ],
     name: "Schönbrunn",
+    labelCenter: [42.16, 16.31],
     forestType: ForestType.MODERATE,
   },
 };

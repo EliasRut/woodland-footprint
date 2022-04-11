@@ -3,7 +3,7 @@ import ForestType from "../../types/ForestType";
 import { Dictionary } from "../../types/Dictionary";
 
 export const fakeAreas: Dictionary<MapArea> = {
-  "abcd-1234": {
+  "mayeringer-warte": {
     geoPoints: [
       [15.87133424976873, 47.997457437349254],
       [15.878829912190211, 47.999965288559935],
@@ -28,8 +28,8 @@ export const fakeAreas: Dictionary<MapArea> = {
       [15.89157253830673, 47.99294299796571],
       [15.873582948495175, 47.997457437349254],
     ],
-    label: "Schönbrunn",
-    key: "abcd-1234",
+    label: "Mayeringer Warte",
+    key: "mayeringer-warte",
     labelCenter: [16.31, 42.16],
     forestType: ForestType.MODERATE,
     area: 4216.12,

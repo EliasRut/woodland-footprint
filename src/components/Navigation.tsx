@@ -3,6 +3,7 @@ import { getBasePath } from "../locationHelper";
 import { AspectAwareImage } from "./AspectAwareImage";
 import { DesktopNavigation } from "./DesktopNavigation";
 import logoOein from "../resources/logo_oein.png";
+import navBurger from "../resources/nav-burger.svg";
 import "./Navigation.css";
 
 export interface NavigationProps {
@@ -69,7 +70,7 @@ export class Navigation extends Component<NavigationProps> {
                 </a>
                 <div onClick={this.handleToggle}>
                   <AspectAwareImage
-                    imageSrcName="nav-burger.svg"
+                    imageSrcName={navBurger}
                     imageAlt="Navigation Burger"
                     imageTitle="Burger"
                     width={35}

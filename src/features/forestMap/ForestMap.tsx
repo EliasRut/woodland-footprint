@@ -41,7 +41,7 @@ export function ForestMap() {
   useEffect(() => {
     if (params.areaKey) {
       window.scrollTo({
-        top: window.innerHeight * 0.7,
+        top: window.innerHeight * 0.68,
         behavior: "smooth",
       });
     }

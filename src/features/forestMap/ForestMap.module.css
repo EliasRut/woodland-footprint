@@ -11,8 +11,8 @@
 }
 
 .openLayersMap {
-  width: 1200px;
-  height: 600px;
+  width: 80vw;
+  height: 65vh;
   border-radius: 16px;
   overflow: hidden;
 }
@@ -25,8 +25,8 @@
 .areaName {
   color: white;
   text-align: center;
-  font-size: 3rem;
-  margin-bottom: 2rem;
+  font-size: 2.6rem;
+  margin-bottom: 1.4rem;
 }
 
 .description {
@@ -53,8 +53,40 @@
 .row {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .row > div {
   flex-basis: 50%;
+}
+
+@media only screen and (max-width: 640px) {
+  .openLayersMap {
+    width: 100vw;
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: 0;
+  }
+
+  .openLayersMap :global(.ol-layer) {
+    border-radius: 0;
+  }
+
+  .description {
+    width: 90%;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+  }
+
+  .label {
+    width: 170px;
+  }
+
+  .row > div {
+    flex-basis: 100%;
+  }
+
+  .areaName {
+    padding: 0 0.4rem;
+  }
 }

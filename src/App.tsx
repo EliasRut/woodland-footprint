@@ -9,6 +9,7 @@ import { Routes, Route } from "react-router-dom";
 import About from "./features/about/About";
 import backgroundBlue from "./resources/background_blue.jpg";
 import { ParallaxBanner } from "react-scroll-parallax";
+import { Navigation } from "./components/Navigation";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -23,7 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      <DesktopNavigation />
+      <Navigation />
       <ParallaxBanner
         layers={[{ image: backgroundBlue, speed: 15 }]}
         className={styles.parallaxBanner}
